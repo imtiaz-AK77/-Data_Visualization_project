@@ -1,0 +1,1379 @@
+[
+  {
+    "State": "Nevada",
+    "Weighted_Automation_Risk": 0.6645,
+    "Total_Employment": 1140240,
+    "High_Risk_Employment": 665490,
+    "High_Risk_Share_Pct": 58.4,
+    "Region": "West",
+    "Rank": 1,
+    "Percentile": 100,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 49650
+      },
+      {
+        "occupation": "Waiters and Waitresses",
+        "risk": 0.94,
+        "employment": 39450
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 34490
+      }
+    ]
+  },
+  {
+    "State": "South Dakota",
+    "Weighted_Automation_Risk": 0.6559,
+    "Total_Employment": 378530,
+    "High_Risk_Employment": 222500,
+    "High_Risk_Share_Pct": 58.8,
+    "Region": "Midwest",
+    "Rank": 2,
+    "Percentile": 98,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 15500
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 13200
+      },
+      {
+        "occupation": "Bookkeeping; Accounting; and Auditing Clerks",
+        "risk": 0.98,
+        "employment": 9610
+      }
+    ]
+  },
+  {
+    "State": "Alabama",
+    "Weighted_Automation_Risk": 0.6395,
+    "Total_Employment": 1722020,
+    "High_Risk_Employment": 967910,
+    "High_Risk_Share_Pct": 56.2,
+    "Region": "South",
+    "Rank": 3,
+    "Percentile": 96,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 72610
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 59690
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 49320
+      }
+    ]
+  },
+  {
+    "State": "Indiana",
+    "Weighted_Automation_Risk": 0.6374,
+    "Total_Employment": 2684160,
+    "High_Risk_Employment": 1496760,
+    "High_Risk_Share_Pct": 55.8,
+    "Region": "Midwest",
+    "Rank": 4,
+    "Percentile": 94,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 92400
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 85810
+      },
+      {
+        "occupation": "Team Assemblers",
+        "risk": 0.97,
+        "employment": 82450
+      }
+    ]
+  },
+  {
+    "State": "Kentucky",
+    "Weighted_Automation_Risk": 0.6347,
+    "Total_Employment": 1650310,
+    "High_Risk_Employment": 914990,
+    "High_Risk_Share_Pct": 55.4,
+    "Region": "South",
+    "Rank": 5,
+    "Percentile": 92,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 68350
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 57080
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 53020
+      }
+    ]
+  },
+  {
+    "State": "Florida",
+    "Weighted_Automation_Risk": 0.6327,
+    "Total_Employment": 7349340,
+    "High_Risk_Employment": 3981760,
+    "High_Risk_Share_Pct": 54.2,
+    "Region": "South",
+    "Rank": 6,
+    "Percentile": 90,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 339070
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 240010
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 228350
+      }
+    ]
+  },
+  {
+    "State": "Mississippi",
+    "Weighted_Automation_Risk": 0.6325,
+    "Total_Employment": 1003550,
+    "High_Risk_Employment": 549420,
+    "High_Risk_Share_Pct": 54.7,
+    "Region": "South",
+    "Rank": 7,
+    "Percentile": 88,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 39600
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 38690
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 28530
+      }
+    ]
+  },
+  {
+    "State": "Louisiana",
+    "Weighted_Automation_Risk": 0.63,
+    "Total_Employment": 1722150,
+    "High_Risk_Employment": 950170,
+    "High_Risk_Share_Pct": 55.2,
+    "Region": "South",
+    "Rank": 8,
+    "Percentile": 86,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 71140
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 61120
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 45230
+      }
+    ]
+  },
+  {
+    "State": "South Carolina",
+    "Weighted_Automation_Risk": 0.6294,
+    "Total_Employment": 1801950,
+    "High_Risk_Employment": 979810,
+    "High_Risk_Share_Pct": 54.4,
+    "Region": "South",
+    "Rank": 9,
+    "Percentile": 84,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 69430
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 64740
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 52450
+      }
+    ]
+  },
+  {
+    "State": "Montana",
+    "Weighted_Automation_Risk": 0.6293,
+    "Total_Employment": 401890,
+    "High_Risk_Employment": 221300,
+    "High_Risk_Share_Pct": 55.1,
+    "Region": "West",
+    "Rank": 10,
+    "Percentile": 82,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 15920
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 14750
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 13240
+      }
+    ]
+  },
+  {
+    "State": "West Virginia",
+    "Weighted_Automation_Risk": 0.6289,
+    "Total_Employment": 614590,
+    "High_Risk_Employment": 334110,
+    "High_Risk_Share_Pct": 54.4,
+    "Region": "South",
+    "Rank": 11,
+    "Percentile": 80,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 24630
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 22390
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 21980
+      }
+    ]
+  },
+  {
+    "State": "Missouri",
+    "Weighted_Automation_Risk": 0.6256,
+    "Total_Employment": 2443440,
+    "High_Risk_Employment": 1341720,
+    "High_Risk_Share_Pct": 54.9,
+    "Region": "Midwest",
+    "Rank": 12,
+    "Percentile": 78,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 82100
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 76060
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 74790
+      }
+    ]
+  },
+  {
+    "State": "Wyoming",
+    "Weighted_Automation_Risk": 0.6253,
+    "Total_Employment": 247700,
+    "High_Risk_Employment": 133680,
+    "High_Risk_Share_Pct": 54.0,
+    "Region": "West",
+    "Rank": 13,
+    "Percentile": 76,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 8580
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 6880
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 6560
+      }
+    ]
+  },
+  {
+    "State": "Nebraska",
+    "Weighted_Automation_Risk": 0.6249,
+    "Total_Employment": 863660,
+    "High_Risk_Employment": 473050,
+    "High_Risk_Share_Pct": 54.8,
+    "Region": "Midwest",
+    "Rank": 14,
+    "Percentile": 74,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 29780
+      },
+      {
+        "occupation": "Heavy and Tractor-Trailer Truck Drivers",
+        "risk": 0.79,
+        "employment": 26910
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 26060
+      }
+    ]
+  },
+  {
+    "State": "Tennessee",
+    "Weighted_Automation_Risk": 0.6242,
+    "Total_Employment": 2613670,
+    "High_Risk_Employment": 1412870,
+    "High_Risk_Share_Pct": 54.1,
+    "Region": "South",
+    "Rank": 15,
+    "Percentile": 72,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 96260
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 93500
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 74390
+      }
+    ]
+  },
+  {
+    "State": "Wisconsin",
+    "Weighted_Automation_Risk": 0.6233,
+    "Total_Employment": 2533000,
+    "High_Risk_Employment": 1389940,
+    "High_Risk_Share_Pct": 54.9,
+    "Region": "Midwest",
+    "Rank": 16,
+    "Percentile": 70,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 85100
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 84250
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 71230
+      }
+    ]
+  },
+  {
+    "State": "Iowa",
+    "Weighted_Automation_Risk": 0.6227,
+    "Total_Employment": 1363960,
+    "High_Risk_Employment": 740240,
+    "High_Risk_Share_Pct": 54.3,
+    "Region": "Midwest",
+    "Rank": 17,
+    "Percentile": 68,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 44500
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 42200
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 40890
+      }
+    ]
+  },
+  {
+    "State": "North Dakota",
+    "Weighted_Automation_Risk": 0.6224,
+    "Total_Employment": 380000,
+    "High_Risk_Employment": 206710,
+    "High_Risk_Share_Pct": 54.4,
+    "Region": "Midwest",
+    "Rank": 18,
+    "Percentile": 66,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 13610
+      },
+      {
+        "occupation": "Heavy and Tractor-Trailer Truck Drivers",
+        "risk": 0.79,
+        "employment": 12210
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 10240
+      }
+    ]
+  },
+  {
+    "State": "Arkansas",
+    "Weighted_Automation_Risk": 0.6204,
+    "Total_Employment": 1070380,
+    "High_Risk_Employment": 577970,
+    "High_Risk_Share_Pct": 54.0,
+    "Region": "South",
+    "Rank": 19,
+    "Percentile": 64,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 37840
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 34480
+      },
+      {
+        "occupation": "Heavy and Tractor-Trailer Truck Drivers",
+        "risk": 0.79,
+        "employment": 33210
+      }
+    ]
+  },
+  {
+    "State": "Texas",
+    "Weighted_Automation_Risk": 0.6192,
+    "Total_Employment": 10685220,
+    "High_Risk_Employment": 5751130,
+    "High_Risk_Share_Pct": 53.8,
+    "Region": "South",
+    "Rank": 20,
+    "Percentile": 62,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 383080
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 363020
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 330510
+      }
+    ]
+  },
+  {
+    "State": "North Carolina",
+    "Weighted_Automation_Risk": 0.6172,
+    "Total_Employment": 3760600,
+    "High_Risk_Employment": 1978050,
+    "High_Risk_Share_Pct": 52.6,
+    "Region": "South",
+    "Rank": 21,
+    "Percentile": 60,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 151900
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 140410
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 112280
+      }
+    ]
+  },
+  {
+    "State": "Kansas",
+    "Weighted_Automation_Risk": 0.6169,
+    "Total_Employment": 1216310,
+    "High_Risk_Employment": 643460,
+    "High_Risk_Share_Pct": 52.9,
+    "Region": "Midwest",
+    "Rank": 22,
+    "Percentile": 58,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 39580
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 36480
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 28480
+      }
+    ]
+  },
+  {
+    "State": "Pennsylvania",
+    "Weighted_Automation_Risk": 0.6165,
+    "Total_Employment": 5169800,
+    "High_Risk_Employment": 2776610,
+    "High_Risk_Share_Pct": 53.7,
+    "Region": "Northeast",
+    "Rank": 23,
+    "Percentile": 56,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 176270
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 147440
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 146380
+      }
+    ]
+  },
+  {
+    "State": "Michigan",
+    "Weighted_Automation_Risk": 0.615,
+    "Total_Employment": 3757710,
+    "High_Risk_Employment": 1984160,
+    "High_Risk_Share_Pct": 52.8,
+    "Region": "Midwest",
+    "Rank": 24,
+    "Percentile": 54,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 147440
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 114410
+      },
+      {
+        "occupation": "Team Assemblers",
+        "risk": 0.97,
+        "employment": 105140
+      }
+    ]
+  },
+  {
+    "State": "Idaho",
+    "Weighted_Automation_Risk": 0.6143,
+    "Total_Employment": 589520,
+    "High_Risk_Employment": 315260,
+    "High_Risk_Share_Pct": 53.5,
+    "Region": "West",
+    "Rank": 25,
+    "Percentile": 52,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 25270
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 16420
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 15190
+      }
+    ]
+  },
+  {
+    "State": "Oklahoma",
+    "Weighted_Automation_Risk": 0.6131,
+    "Total_Employment": 1441120,
+    "High_Risk_Employment": 768430,
+    "High_Risk_Share_Pct": 53.3,
+    "Region": "South",
+    "Rank": 26,
+    "Percentile": 50,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 49280
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 43690
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 34520
+      }
+    ]
+  },
+  {
+    "State": "Hawaii",
+    "Weighted_Automation_Risk": 0.6129,
+    "Total_Employment": 558070,
+    "High_Risk_Employment": 289240,
+    "High_Risk_Share_Pct": 51.8,
+    "Region": "West",
+    "Rank": 27,
+    "Percentile": 48,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 23110
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 16130
+      },
+      {
+        "occupation": "Waiters and Waitresses",
+        "risk": 0.94,
+        "employment": 16110
+      }
+    ]
+  },
+  {
+    "State": "Maine",
+    "Weighted_Automation_Risk": 0.6098,
+    "Total_Employment": 527810,
+    "High_Risk_Employment": 276750,
+    "High_Risk_Share_Pct": 52.4,
+    "Region": "Northeast",
+    "Rank": 28,
+    "Percentile": 46,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 20190
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 16000
+      },
+      {
+        "occupation": "Personal Care Aides",
+        "risk": 0.74,
+        "employment": 13340
+      }
+    ]
+  },
+  {
+    "State": "Ohio",
+    "Weighted_Automation_Risk": 0.6098,
+    "Total_Employment": 4746300,
+    "High_Risk_Employment": 2481050,
+    "High_Risk_Share_Pct": 52.3,
+    "Region": "Midwest",
+    "Rank": 29,
+    "Percentile": 44,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 163790
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 157460
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 117390
+      }
+    ]
+  },
+  {
+    "State": "Delaware",
+    "Weighted_Automation_Risk": 0.6079,
+    "Total_Employment": 371070,
+    "High_Risk_Employment": 195060,
+    "High_Risk_Share_Pct": 52.6,
+    "Region": "South",
+    "Rank": 30,
+    "Percentile": 42,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 17750
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 11800
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 11720
+      }
+    ]
+  },
+  {
+    "State": "Georgia",
+    "Weighted_Automation_Risk": 0.6075,
+    "Total_Employment": 3797560,
+    "High_Risk_Employment": 1985180,
+    "High_Risk_Share_Pct": 52.3,
+    "Region": "South",
+    "Rank": 31,
+    "Percentile": 40,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 141860
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 117740
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 112540
+      }
+    ]
+  },
+  {
+    "State": "New Hampshire",
+    "Weighted_Automation_Risk": 0.6067,
+    "Total_Employment": 573810,
+    "High_Risk_Employment": 299070,
+    "High_Risk_Share_Pct": 52.1,
+    "Region": "Northeast",
+    "Rank": 32,
+    "Percentile": 38,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 25920
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 22330
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 15690
+      }
+    ]
+  },
+  {
+    "State": "Oregon",
+    "Weighted_Automation_Risk": 0.6054,
+    "Total_Employment": 1540720,
+    "High_Risk_Employment": 811750,
+    "High_Risk_Share_Pct": 52.7,
+    "Region": "West",
+    "Rank": 33,
+    "Percentile": 36,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 61610
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 45730
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 34950
+      }
+    ]
+  },
+  {
+    "State": "Utah",
+    "Weighted_Automation_Risk": 0.6011,
+    "Total_Employment": 1237590,
+    "High_Risk_Employment": 623470,
+    "High_Risk_Share_Pct": 50.4,
+    "Region": "West",
+    "Rank": 34,
+    "Percentile": 34,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 43450
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 41490
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 29370
+      }
+    ]
+  },
+  {
+    "State": "Alaska",
+    "Weighted_Automation_Risk": 0.6011,
+    "Total_Employment": 284920,
+    "High_Risk_Employment": 144980,
+    "High_Risk_Share_Pct": 50.9,
+    "Region": "West",
+    "Rank": 35,
+    "Percentile": 32,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 10470
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 6920
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 6810
+      }
+    ]
+  },
+  {
+    "State": "Rhode Island",
+    "Weighted_Automation_Risk": 0.6007,
+    "Total_Employment": 404020,
+    "High_Risk_Employment": 206930,
+    "High_Risk_Share_Pct": 51.2,
+    "Region": "Northeast",
+    "Rank": 36,
+    "Percentile": 30,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 13720
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 10540
+      },
+      {
+        "occupation": "Waiters and Waitresses",
+        "risk": 0.94,
+        "employment": 10220
+      }
+    ]
+  },
+  {
+    "State": "New Mexico",
+    "Weighted_Automation_Risk": 0.5997,
+    "Total_Employment": 716270,
+    "High_Risk_Employment": 367180,
+    "High_Risk_Share_Pct": 51.3,
+    "Region": "West",
+    "Rank": 37,
+    "Percentile": 28,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 26880
+      },
+      {
+        "occupation": "Personal Care Aides",
+        "risk": 0.74,
+        "employment": 23940
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 23390
+      }
+    ]
+  },
+  {
+    "State": "Arizona",
+    "Weighted_Automation_Risk": 0.5965,
+    "Total_Employment": 2355040,
+    "High_Risk_Employment": 1185300,
+    "High_Risk_Share_Pct": 50.3,
+    "Region": "West",
+    "Rank": 38,
+    "Percentile": 26,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 90030
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 67040
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 64110
+      }
+    ]
+  },
+  {
+    "State": "Illinois",
+    "Weighted_Automation_Risk": 0.5946,
+    "Total_Employment": 5168630,
+    "High_Risk_Employment": 2586860,
+    "High_Risk_Share_Pct": 50.0,
+    "Region": "Midwest",
+    "Rank": 39,
+    "Percentile": 24,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 186820
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 145060
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 140700
+      }
+    ]
+  },
+  {
+    "State": "Vermont",
+    "Weighted_Automation_Risk": 0.5944,
+    "Total_Employment": 264580,
+    "High_Risk_Employment": 137130,
+    "High_Risk_Share_Pct": 51.8,
+    "Region": "Northeast",
+    "Rank": 40,
+    "Percentile": 22,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 9700
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 9100
+      },
+      {
+        "occupation": "Personal Care Aides",
+        "risk": 0.74,
+        "employment": 6680
+      }
+    ]
+  },
+  {
+    "State": "California",
+    "Weighted_Automation_Risk": 0.5932,
+    "Total_Employment": 14163090,
+    "High_Risk_Employment": 7260660,
+    "High_Risk_Share_Pct": 51.3,
+    "Region": "West",
+    "Rank": 41,
+    "Percentile": 20,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 440440
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 404500
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 372200
+      }
+    ]
+  },
+  {
+    "State": "Minnesota",
+    "Weighted_Automation_Risk": 0.5926,
+    "Total_Employment": 2501100,
+    "High_Risk_Employment": 1277350,
+    "High_Risk_Share_Pct": 51.1,
+    "Region": "Midwest",
+    "Rank": 42,
+    "Percentile": 18,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 84730
+      },
+      {
+        "occupation": "Personal Care Aides",
+        "risk": 0.74,
+        "employment": 67420
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 66370
+      }
+    ]
+  },
+  {
+    "State": "New Jersey",
+    "Weighted_Automation_Risk": 0.5905,
+    "Total_Employment": 3474620,
+    "High_Risk_Employment": 1729940,
+    "High_Risk_Share_Pct": 49.8,
+    "Region": "Northeast",
+    "Rank": 43,
+    "Percentile": 16,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 131080
+      },
+      {
+        "occupation": "Laborers and Freight; Stock; and Material Movers; Hand",
+        "risk": 0.85,
+        "employment": 107840
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 95550
+      }
+    ]
+  },
+  {
+    "State": "Washington",
+    "Weighted_Automation_Risk": 0.5898,
+    "Total_Employment": 2726240,
+    "High_Risk_Employment": 1374880,
+    "High_Risk_Share_Pct": 50.4,
+    "Region": "West",
+    "Rank": 44,
+    "Percentile": 14,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 101850
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 81160
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 65350
+      }
+    ]
+  },
+  {
+    "State": "Colorado",
+    "Weighted_Automation_Risk": 0.5886,
+    "Total_Employment": 2212180,
+    "High_Risk_Employment": 1108850,
+    "High_Risk_Share_Pct": 50.1,
+    "Region": "West",
+    "Rank": 45,
+    "Percentile": 12,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 83670
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 65140
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 59540
+      }
+    ]
+  },
+  {
+    "State": "Virginia",
+    "Weighted_Automation_Risk": 0.5804,
+    "Total_Employment": 3270730,
+    "High_Risk_Employment": 1605000,
+    "High_Risk_Share_Pct": 49.1,
+    "Region": "South",
+    "Rank": 46,
+    "Percentile": 10,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 122290
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 108920
+      },
+      {
+        "occupation": "Combined Food Preparation and Serving Workers; Including Fast Food",
+        "risk": 0.92,
+        "employment": 92780
+      }
+    ]
+  },
+  {
+    "State": "New York",
+    "Weighted_Automation_Risk": 0.5795,
+    "Total_Employment": 8149510,
+    "High_Risk_Employment": 3958530,
+    "High_Risk_Share_Pct": 48.6,
+    "Region": "Northeast",
+    "Rank": 47,
+    "Percentile": 8,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 322970
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 197920
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 193860
+      }
+    ]
+  },
+  {
+    "State": "Connecticut",
+    "Weighted_Automation_Risk": 0.5677,
+    "Total_Employment": 1475400,
+    "High_Risk_Employment": 703180,
+    "High_Risk_Share_Pct": 47.7,
+    "Region": "Northeast",
+    "Rank": 48,
+    "Percentile": 6,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 51540
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 38800
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 32340
+      }
+    ]
+  },
+  {
+    "State": "Maryland",
+    "Weighted_Automation_Risk": 0.5606,
+    "Total_Employment": 2306300,
+    "High_Risk_Employment": 1081860,
+    "High_Risk_Share_Pct": 46.9,
+    "Region": "South",
+    "Rank": 49,
+    "Percentile": 4,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 77520
+      },
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 69470
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 61760
+      }
+    ]
+  },
+  {
+    "State": "Massachusetts",
+    "Weighted_Automation_Risk": 0.5453,
+    "Total_Employment": 3069190,
+    "High_Risk_Employment": 1395780,
+    "High_Risk_Share_Pct": 45.5,
+    "Region": "Northeast",
+    "Rank": 50,
+    "Percentile": 2,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Retail Salespersons",
+        "risk": 0.92,
+        "employment": 107880
+      },
+      {
+        "occupation": "Cashiers",
+        "risk": 0.97,
+        "employment": 72200
+      },
+      {
+        "occupation": "Office Clerks; General",
+        "risk": 0.96,
+        "employment": 63080
+      }
+    ]
+  },
+  {
+    "State": "District of Columbia",
+    "Weighted_Automation_Risk": 0.4451,
+    "Total_Employment": 599560,
+    "High_Risk_Employment": 205340,
+    "High_Risk_Share_Pct": 34.2,
+    "Region": "South",
+    "Rank": 51,
+    "Percentile": 0,
+    "Top3_At_Risk": [
+      {
+        "occupation": "Security Guards",
+        "risk": 0.84,
+        "employment": 15140
+      },
+      {
+        "occupation": "Secretaries and Administrative Assistants; Except Legal; Medical; and Executive",
+        "risk": 0.96,
+        "employment": 14720
+      },
+      {
+        "occupation": "Accountants and Auditors",
+        "risk": 0.94,
+        "employment": 11080
+      }
+    ]
+  }
+]

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Automation's Impact on Employment</title>
+<script src="d3.min.js"></script>
+<script src="topojson-client.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+  .sector-line{ fill:none; stroke-width:3; }
+  .sector-dot{ cursor:pointer; }
+  .end-label{ font-weight:700; }
+  .event-marker{ stroke-dasharray:4,3; }
+  .event-label{ font-size:10.5px; font-weight:700; text-anchor:middle; }
+  .hover-guide{ stroke:var(--ink); stroke-width:1; stroke-dasharray:3,3; pointer-events:none; opacity:0; }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .main-tabs-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px 40px 0;
+  }
+  .main-tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .main-tab-btn{
+    appearance:none;
+    border:1px solid var(--line);
+    background:var(--panel);
+    color:var(--ink);
+    font-size:13.5px;
+    font-weight:700;
+    padding:11px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(30,25,15,0.05);
+    transition:all .12s ease;
+  }
+  .main-tab-btn:hover{ border-color:var(--accent); color:var(--accent); }
+  .main-tab-btn.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+<div class="bg-vignette"></div>
+
+<div class="main-tabs-wrap">
+  <div class="main-tabs">
+    <button class="main-tab-btn active" data-target="view-us">1. U.S. Automation Risk Map</button>
+    <button class="main-tab-btn" data-target="view-world">2. Global Services Map</button>
+    <button class="main-tab-btn" data-target="view-line">3. Sector Employment Trends</button>
+  </div>
+</div>
+
+<div class="view active" id="view-us">
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI &amp; Automation's Impact on Employment</div>
+    <h1>Where Is Automation Risk Highest Across the U.S.?</h1>
+    <div class="sub">Each state's employment-weighted automation probability &mdash; the share of its workforce concentrated in occupations most exposed to automation.</div>
+    <div class="credit"></div>
+  </header>
+
+  <div class="research-question">
+    <div class="rq-label">Research Question</div>
+    <div class="rq-text">How does automation risk vary across U.S. states, economic sectors, and regions &mdash; and does that exposure align with real, observed shifts in global employment?</div>
+  </div>
+
+  <div class="controls-row">
+    <div class="control-group">
+      <span class="control-label">Color by</span>
+      <button class="toggle-btn active" data-metric="risk">Weighted Risk</button>
+      <button class="toggle-btn" data-metric="highrisk">High-Risk Worker Share (&ge;70%)</button>
+    </div>
+    <div class="control-group">
+      <span class="control-label">Region</span>
+      <button class="toggle-btn active" data-region="All">All</button>
+      <button class="toggle-btn" data-region="Northeast">Northeast</button>
+      <button class="toggle-btn" data-region="Midwest">Midwest</button>
+      <button class="toggle-btn" data-region="South">South</button>
+      <button class="toggle-btn" data-region="West">West</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="left-col">
+      <div class="panel" id="us-map-panel">
+        <div id="us-chart"></div>
+        <div id="us-legend-wrap">
+          <svg id="us-legend-svg"></svg>
+        </div>
+      </div>
+
+      <div class="panel strip-panel">
+        <h2>Regional Comparison</h2>
+        <div id="us-region-chart"></div>
+      </div>
+    </div>
+
+    <div class="panel side">
+      <div class="mini-stat-row">
+        <div class="mini-stat">
+          <div class="mini-label" id="us-mini-label-1">National Average</div>
+          <div class="mini-value" id="us-natl-avg">&mdash;</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-label">Spread</div>
+          <div class="mini-value" id="us-spread-value">&mdash;</div>
+        </div>
+      </div>
+
+      <h2 id="us-high-list-title">Highest Risk</h2>
+      <ul id="us-ranklist-high" class="barlist"></ul>
+
+      <h2 style="margin-top:18px;" id="us-low-list-title">Lowest Risk</h2>
+      <ul id="us-ranklist-low" class="barlist"></ul>
+
+      <div class="stat" style="margin-top:18px; padding-top:16px; border-top:1px solid var(--line);">
+        <div class="label">Global context</div>
+        <div class="detail" style="font-size:12.5px;">Worldwide, employment has been shifting away from the sectors most exposed to automation: Services' share of global employment rose from 44.6% to 50.6% (2010&ndash;2025), while Agriculture fell from 32.6% to 25.8% over the same period (ILOSTAT).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel strip-panel">
+    <h2 id="us-strip-title">All 51 States, at a Glance</h2>
+    <div id="us-strip-chart"></div>
+  </div>
+
+  <footer>
+    Automation risk is an employment-weighted average of occupation-level automation probabilities across each state's workforce, using BLS state occupational employment data. High-Risk Worker Share is the percentage of a state's workforce employed in occupations with automation probability of 70% or higher. Regions follow U.S. Census Bureau definitions.
+  </footer>
+</div>
+</div>
+
+<div class="view" id="view-world">
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI &amp; Automation's Impact on Employment</div>
+    <h1>Validating the Pattern Against the Global Job Market</h1>
+    <div class="sub">Each country's share of employment in the Services sector &mdash; the sector least exposed to automation. Colored countries have real ILOSTAT data for 2025; gray countries are not covered by the dataset.</div>
+    <div class="credit"></div>
+  </header>
+
+  <div class="research-question">
+    <div class="rq-label">Research Question</div>
+    <div class="rq-text">If automation risk is highest in occupations concentrated in Agriculture and Industry, does the real global labor market actually show a shift toward Services &mdash; the lower-risk sector &mdash; as the automation-risk data would predict?</div>
+  </div>
+
+  <div class="controls-row">
+    <div class="control-group">
+      <span class="control-label">View</span>
+      <button class="toggle-btn active" data-view="level">2025 Services Share</button>
+      <button class="toggle-btn" data-view="change">Change Since 2010</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="left-col">
+      <div class="panel" id="world-map-panel">
+        <div id="world-chart"></div>
+        <div id="world-legend-wrap">
+          <svg id="world-legend-svg"></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel side">
+      <div class="mini-stat-row">
+        <div class="mini-stat">
+          <div class="mini-label" id="world-mini-label-1">Global Average</div>
+          <div class="mini-value" id="world-natl-avg">&mdash;</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-label">Countries Covered</div>
+          <div class="mini-value" id="world-spread-value">183</div>
+        </div>
+      </div>
+
+      <h2 id="world-high-list-title">Highest Services Share</h2>
+      <ul id="world-ranklist-high" class="barlist"></ul>
+
+      <h2 style="margin-top:18px;" id="world-low-list-title">Lowest Services Share</h2>
+      <ul id="world-ranklist-low" class="barlist"></ul>
+
+      <div class="stat" style="margin-top:18px; padding-top:16px; border-top:1px solid var(--line);">
+        <div class="label">Why this matters</div>
+        <div class="detail" style="font-size:12.5px;">Countries with low Services share tend to have workforces concentrated in Agriculture and Industry &mdash; the exact sectors your occupation-risk data flags as most automatable. This map lets you check that prediction against real employment data, country by country.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Employment shares computed from ILOSTAT (Sex = Total), covering 183 countries with complete Agriculture/Industry/Services data for both 2010 and 2025. "Change since 2010" shows the percentage-point shift in each country's Services share over that period. Country boundaries: Natural Earth via world-atlas (110m resolution).
+  </footer>
+</div>
+</div>
+
+<div class="view" id="view-line">
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI &amp; Automation's Impact on Employment</div>
+    <h1>How Has the Global Workforce Shifted, 2010&ndash;2025?</h1>
+    <div class="sub">Global employment across the three broad economic sectors &mdash; Agriculture, Industry, Services &mdash; aggregated from ~185 ILOSTAT-reporting countries per year.</div>
+    <div class="credit"></div>
+  </header>
+
+  <div class="research-question">
+    <div class="rq-label">Research Question</div>
+    <div class="rq-text">If Agriculture and Industry carry the highest automation risk, does the real global labor market show sustained movement away from them and toward Services over time &mdash; and how steady or volatile is that trend?</div>
+  </div>
+
+  <div class="controls-row">
+    <div class="control-group">
+      <span class="control-label">Metric</span>
+      <button class="toggle-btn active" data-metric="share">% Share of Employment</button>
+      <button class="toggle-btn" data-metric="absolute">Absolute Employment (Millions)</button>
+    </div>
+    <div class="control-group">
+      <span class="control-label">Show</span>
+      <button class="toggle-btn active" data-sector="All">All</button>
+      <button class="toggle-btn" data-sector="Agriculture">Agriculture</button>
+      <button class="toggle-btn" data-sector="Industry">Industry</button>
+      <button class="toggle-btn" data-sector="Services">Services</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="left-col">
+      <div class="panel" id="line-map-panel">
+        <div id="line-chart"></div>
+      </div>
+    </div>
+
+    <div class="panel side">
+      <h2>2010 &rarr; 2025 Change</h2>
+      <div id="line-change-cards"></div>
+
+      <div class="stat" style="margin-top:18px; padding-top:16px; border-top:1px solid var(--line);">
+        <div class="label">2020 dip</div>
+        <div class="detail" style="font-size:12.5px;">Services momentarily lost ground in 2020 &mdash; the only interruption to its 15-year climb &mdash; consistent with pandemic-era disruption to hospitality, retail, and other in-person service work. Agriculture and Industry proved comparatively steadier that year.</div>
+      </div>
+      <div class="stat">
+        <div class="label">Reading this chart</div>
+        <div class="detail" style="font-size:12.5px;">Hover anywhere on the chart to see exact values for that year. Use "Show" above to isolate one sector at a time &mdash; the other two fade into the background instead of disappearing, so you keep a sense of scale.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Global totals aggregated across ILOSTAT-reporting countries (Sex = Total), covering Agriculture, Industry, and Services &mdash; the three sectors that together account for total employment. Share is each sector's percentage of Agriculture + Industry + Services employment for that year.
+  </footer>
+</div>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+document.querySelectorAll(".main-tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".main-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.target).classList.add("active");
+  });
+});
+</script>
+
+<script>
+(function(){
+
+const STATE_ABBR = {
+  "Alabama":"AL","Alaska":"AK","Arizona":"AZ","Arkansas":"AR","California":"CA","Colorado":"CO",
+  "Connecticut":"CT","Delaware":"DE","District of Columbia":"DC","Florida":"FL","Georgia":"GA",
+  "Hawaii":"HI","Idaho":"ID","Illinois":"IL","Indiana":"IN","Iowa":"IA","Kansas":"KS","Kentucky":"KY",
+  "Louisiana":"LA","Maine":"ME","Maryland":"MD","Massachusetts":"MA","Michigan":"MI","Minnesota":"MN",
+  "Mississippi":"MS","Missouri":"MO","Montana":"MT","Nebraska":"NE","Nevada":"NV","New Hampshire":"NH",
+  "New Jersey":"NJ","New Mexico":"NM","New York":"NY","North Carolina":"NC","North Dakota":"ND",
+  "Ohio":"OH","Oklahoma":"OK","Oregon":"OR","Pennsylvania":"PA","Rhode Island":"RI",
+  "South Carolina":"SC","South Dakota":"SD","Tennessee":"TN","Texas":"TX","Utah":"UT","Vermont":"VT",
+  "Virginia":"VA","Washington":"WA","West Virginia":"WV","Wisconsin":"WI","Wyoming":"WY"
+};
+
+const METRICS = {
+  risk:     { label: "Weighted Automation Risk", get: d => d.Weighted_Automation_Risk * 100, fmt: v => v.toFixed(1) + "%" },
+  highrisk: { label: "High-Risk Worker Share",    get: d => d.High_Risk_Share_Pct,            fmt: v => v.toFixed(1) + "%" }
+};
+const REGION_COLORS = { Northeast:"#7a7d99", Midwest:"#c9a63d", South:"#b23a2e", West:"#2f7a63" };
+
+let currentMetric = "risk";
+let currentRegion = "All";
+
+Promise.all([
+  d3.json("us-states-albers-10m.json"),
+  d3.json("state_risk_data.json")
+]).then(([us, riskData]) => {
+
+  const riskByName = new Map(riskData.map(d => [d.State, d]));
+  const states = topojson.feature(us, us.objects.states).features;
+
+  const domains = {
+    risk: d3.extent(riskData, d => METRICS.risk.get(d)),
+    highrisk: d3.extent(riskData, d => METRICS.highrisk.get(d))
+  };
+  const colors = {
+    risk: d3.scaleSequential(d3.interpolateYlOrRd).domain(domains.risk),
+    highrisk: d3.scaleSequential(d3.interpolateYlOrRd).domain(domains.highrisk)
+  };
+
+  function natlAvg(metric) {
+    return d3.sum(riskData, d => METRICS[metric].get(d) * d.Total_Employment) / d3.sum(riskData, d => d.Total_Employment);
+  }
+  function color(d) { return colors[currentMetric](METRICS[currentMetric].get(d)); }
+  function val(d) { return METRICS[currentMetric].get(d); }
+  function inRegion(d) { return currentRegion === "All" || d.Region === currentRegion; }
+
+  // ---------------- MAP ----------------
+  const width = 900, height = 560;
+  const svg = d3.select("#us-chart").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("width", "100%")
+    .attr("height", "auto");
+
+  const defs = svg.append("defs");
+  const dropShadow = defs.append("filter").attr("id", "stateShadow").attr("x","-50%").attr("y","-50%").attr("width","200%").attr("height","200%");
+  dropShadow.append("feDropShadow").attr("dx",0).attr("dy",2).attr("stdDeviation",3).attr("flood-color","#000").attr("flood-opacity",0.35);
+
+  const path = d3.geoPath();
+  const bounds = path.bounds({type: "FeatureCollection", features: states});
+  const scale = Math.min(
+    width / (bounds[1][0] - bounds[0][0]),
+    height / (bounds[1][1] - bounds[0][1])
+  ) * 0.94;
+  const tx = (width - scale * (bounds[0][0] + bounds[1][0])) / 2;
+  const ty = (height - scale * (bounds[0][1] + bounds[1][1])) / 2;
+
+  const g = svg.append("g").attr("transform", `translate(${tx},${ty}) scale(${scale})`);
+  const tooltip = d3.select("#tooltip");
+
+  const statePaths = g.selectAll("path")
+    .data(states)
+    .join("path")
+    .attr("class", "state-path")
+    .attr("d", path)
+    .attr("vector-effect", "non-scaling-stroke")
+    .style("opacity", 0)
+    .on("mousemove", (event, d) => {
+      const rec = riskByName.get(d.properties.name);
+      if (!rec) return;
+      highlight(d.properties.name);
+      showTooltip(event, rec);
+    })
+    .on("mouseleave", () => { unhighlight(); tooltip.style("opacity", 0); });
+
+  statePaths.transition().delay((d, i) => i * 10).duration(500).style("opacity", 1);
+
+  const labelData = states
+    .map(d => ({ feature: d, bounds: path.bounds(d) }))
+    .filter(o => {
+      const w = o.bounds[1][0] - o.bounds[0][0];
+      const h = o.bounds[1][1] - o.bounds[0][1];
+      return Math.hypot(w, h) > 95;
+    });
+
+  g.selectAll("text.state-label")
+    .data(labelData)
+    .join("text")
+    .attr("class", "state-label")
+    .attr("transform", d => `translate(${path.centroid(d.feature)})`)
+    .attr("text-anchor", "middle")
+    .attr("dy", "0.32em")
+    .attr("pointer-events", "none")
+    .style("opacity", 0)
+    .text(d => STATE_ABBR[d.feature.properties.name] || "")
+    .transition().delay(400).duration(500).style("opacity", 1);
+
+  function highlight(name) {
+    statePaths
+      .attr("stroke", d => d.properties.name === name ? "#1c1b1a" : "#fff")
+      .attr("stroke-width", d => d.properties.name === name ? 1.6 : 0.75)
+      .attr("filter", d => d.properties.name === name ? "url(#stateShadow)" : null);
+    d3.select("#view-us").selectAll(".strip-dot")
+      .attr("stroke", d => d.State === name ? "#1c1b1a" : "#fff")
+      .attr("stroke-width", d => d.State === name ? 2 : 1)
+      .attr("r", d => d.State === name ? 8 : 5.5);
+  }
+  function unhighlight() {
+    statePaths.attr("stroke", "#fff").attr("stroke-width", 0.75).attr("filter", null);
+    d3.select("#view-us").selectAll(".strip-dot").attr("stroke", "#fff").attr("stroke-width", 1).attr("r", 5.5);
+  }
+
+  function showTooltip(event, rec) {
+    const avg = natlAvg(currentMetric);
+    const delta = val(rec) - avg;
+    const deltaTxt = `${delta >= 0 ? "+" : ""}${delta.toFixed(1)} pts vs. national avg (${METRICS[currentMetric].label})`;
+    const occList = rec.Top3_At_Risk.map(o => `<div class="t-occ">${o.occupation} <span class="t-occ-risk">${(o.risk*100).toFixed(0)}%</span></div>`).join("");
+    tooltip
+      .style("opacity", 1)
+      .style("left", (event.pageX + 16) + "px")
+      .style("top", (event.pageY - 10) + "px")
+      .html(`
+        <div class="t-title">${rec.State} <span class="t-region">${rec.Region}</span></div>
+        <div>Weighted risk: <span class="t-risk">${(rec.Weighted_Automation_Risk*100).toFixed(1)}%</span> &middot; High-risk share: <span class="t-risk">${rec.High_Risk_Share_Pct}%</span></div>
+        <div class="t-bar-wrap"><div class="t-bar-track"><div class="t-bar-fill" style="width:${((val(rec)-domains[currentMetric][0])/(domains[currentMetric][1]-domains[currentMetric][0])*100).toFixed(1)}%; background:${color(rec)};"></div></div></div>
+        <div style="color:${delta>=0?'#ffb199':'#9fd8bd'};">${deltaTxt}</div>
+        <div>Rank #${rec.Rank} of 51 &middot; ${rec.Percentile}th percentile</div>
+        <div>Total employment: ${d3.format(",")(rec.Total_Employment)}</div>
+        <div style="margin-top:6px; color:#c9c6c0; font-weight:700;">Top exposed occupations:</div>
+        ${occList}
+      `);
+  }
+
+  // ---------------- LEGEND ----------------
+  const legendW = 460, legendH = 54;
+  const lgSvg = d3.select("#us-legend-svg").attr("viewBox", `0 0 ${legendW} ${legendH}`).attr("width", "100%").attr("height", legendH);
+  const barY = 22, barH = 12, barX = 10, barW = legendW - 20;
+  const legendGradDefs = lgSvg.append("defs");
+  const legendGrad = legendGradDefs.append("linearGradient").attr("id", "riskGrad");
+  lgSvg.append("rect").attr("x", barX).attr("y", barY).attr("width", barW).attr("height", barH).attr("rx", 4).attr("fill", "url(#riskGrad)");
+  const legendMinText = lgSvg.append("text").attr("x", barX).attr("y", barY - 8).attr("font-size", 11).attr("fill", "var(--muted)");
+  const legendMaxText = lgSvg.append("text").attr("x", barX + barW).attr("y", barY - 8).attr("text-anchor", "end").attr("font-size", 11).attr("fill", "var(--muted)");
+  const avgLine = lgSvg.append("line").attr("y1", barY - 4).attr("y2", barY + barH + 4).attr("stroke", "#1c1b1a").attr("stroke-width", 2);
+  const avgText = lgSvg.append("text").attr("y", barY + barH + 18).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 700).attr("fill", "var(--ink)");
+
+  function updateLegend() {
+    const [minV, maxV] = domains[currentMetric];
+    legendGrad.selectAll("stop").remove();
+    d3.range(0, 1.01, 0.05).forEach(t => {
+      legendGrad.append("stop").attr("offset", `${t*100}%`).attr("stop-color", colors[currentMetric](minV + t*(maxV-minV)));
+    });
+    const legendX = d3.scaleLinear().domain([minV, maxV]).range([barX, barX + barW]);
+    legendMinText.text(METRICS[currentMetric].fmt(minV));
+    legendMaxText.text(METRICS[currentMetric].fmt(maxV));
+    const avg = natlAvg(currentMetric);
+    const avgX = legendX(avg);
+    avgLine.attr("x1", avgX).attr("x2", avgX);
+    avgText.attr("x", avgX).text(`US avg ${METRICS[currentMetric].fmt(avg)}`);
+    d3.select("#us-natl-avg").text(METRICS[currentMetric].fmt(avg));
+    d3.select("#us-spread-value").text(`${METRICS[currentMetric].fmt(minV)}\u2013${METRICS[currentMetric].fmt(maxV)}`);
+    d3.select("#us-mini-label-1").text(`National Avg (${METRICS[currentMetric].label})`);
+  }
+
+  // ---------------- SIDE PANEL LISTS ----------------
+  const barScales = {
+    risk: d3.scaleLinear().domain(domains.risk).range([6, 100]),
+    highrisk: d3.scaleLinear().domain(domains.highrisk).range([6, 100])
+  };
+
+  function renderBarList(sel, arr) {
+    d3.select(sel).selectAll("li")
+      .data(arr, d => d.State)
+      .join("li")
+      .html(d => `
+        <div class="bl-row">
+          <span class="bl-name">${d.State}</span>
+          <span class="bl-val">${METRICS[currentMetric].fmt(val(d))}</span>
+        </div>
+        <div class="bl-track"><div class="bl-fill" style="width:${barScales[currentMetric](val(d))}%; background:${color(d)};"></div></div>
+      `)
+      .on("mousemove", (event, d) => { highlight(d.State); showTooltip(event, d); })
+      .on("mouseleave", () => { unhighlight(); tooltip.style("opacity", 0); });
+  }
+
+  function updateLists() {
+    const subset = riskData.filter(inRegion);
+    const sorted = [...subset].sort((a,b) => val(b) - val(a));
+    renderBarList("#us-ranklist-high", sorted.slice(0, 5));
+    renderBarList("#us-ranklist-low", sorted.slice(-5).reverse());
+    d3.select("#us-high-list-title").text(`Highest ${METRICS[currentMetric].label}${currentRegion !== "All" ? " \u2014 " + currentRegion : ""}`);
+    d3.select("#us-low-list-title").text(`Lowest ${METRICS[currentMetric].label}${currentRegion !== "All" ? " \u2014 " + currentRegion : ""}`);
+  }
+
+  // ---------------- REGIONAL COMPARISON ----------------
+  const regionW = 1160, regionH = 130;
+  const regionSvg = d3.select("#us-region-chart").append("svg")
+    .attr("viewBox", `0 0 ${regionW} ${regionH}`).attr("width", "100%").attr("height", "auto");
+
+  function computeRegionAgg(metric) {
+    const byRegion = d3.group(riskData, d => d.Region);
+    return Array.from(byRegion, ([region, arr]) => ({
+      region,
+      value: d3.sum(arr, d => METRICS[metric].get(d) * d.Total_Employment) / d3.sum(arr, d => d.Total_Employment),
+      n: arr.length
+    })).sort((a,b) => b.value - a.value);
+  }
+
+  function updateRegionChart() {
+    const agg = computeRegionAgg(currentMetric);
+    const rMargin = { left: 110, right: 60, top: 10, bottom: 10 };
+    const rx = d3.scaleLinear().domain([0, d3.max(agg, d => d.value) * 1.15]).range([rMargin.left, regionW - rMargin.right]);
+    const ry = d3.scaleBand().domain(agg.map(d => d.region)).range([rMargin.top, regionH - rMargin.bottom]).padding(0.35);
+
+    const bars = regionSvg.selectAll("rect.region-bar").data(agg, d => d.region);
+    bars.join("rect")
+      .attr("class", "region-bar")
+      .attr("rx", 5)
+      .style("cursor", "pointer")
+      .on("click", (event, d) => setRegion(currentRegion === d.region ? "All" : d.region))
+      .attr("y", d => ry(d.region))
+      .attr("height", ry.bandwidth())
+      .attr("x", rMargin.left)
+      .style("opacity", d => currentRegion === "All" || currentRegion === d.region ? 1 : 0.35)
+      .transition().duration(300)
+      .attr("width", d => rx(d.value) - rMargin.left)
+      .attr("fill", d => REGION_COLORS[d.region]);
+
+    const labels = regionSvg.selectAll("text.region-label").data(agg, d => d.region);
+    labels.join("text")
+      .attr("class", "region-label")
+      .attr("x", rMargin.left - 10)
+      .attr("y", d => ry(d.region) + ry.bandwidth()/2)
+      .attr("dy", "0.35em")
+      .attr("text-anchor", "end")
+      .attr("font-size", 12.5).attr("font-weight", 700).attr("fill", "var(--ink)")
+      .style("cursor", "pointer")
+      .on("click", (event, d) => setRegion(currentRegion === d.region ? "All" : d.region))
+      .text(d => d.region);
+
+    const values = regionSvg.selectAll("text.region-value").data(agg, d => d.region);
+    values.join("text")
+      .attr("class", "region-value")
+      .attr("y", d => ry(d.region) + ry.bandwidth()/2)
+      .attr("dy", "0.35em")
+      .attr("font-size", 12.5).attr("font-weight", 700).attr("fill", "var(--ink)")
+      .transition().duration(300)
+      .attr("x", d => rx(d.value) + 8)
+      .text(d => METRICS[currentMetric].fmt(d.value));
+  }
+
+  // ---------------- DISTRIBUTION STRIP ----------------
+  const stripW = 1160, stripH = 90, stripMargin = { left: 20, right: 20 };
+  const stripSvg = d3.select("#us-strip-chart").append("svg")
+    .attr("viewBox", `0 0 ${stripW} ${stripH}`).attr("width", "100%").attr("height", "auto");
+
+  stripSvg.append("line").attr("x1", stripMargin.left).attr("x2", stripW - stripMargin.right).attr("y1", 45).attr("y2", 45).attr("stroke", "var(--line)").attr("stroke-width", 2);
+  const avgLine2 = stripSvg.append("line").attr("y1", 20).attr("y2", 70).attr("stroke", "#1c1b1a").attr("stroke-width", 1.5).attr("stroke-dasharray", "3,2");
+  const avgText2 = stripSvg.append("text").attr("y", 14).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 700).attr("fill","var(--ink)").text("US avg");
+  const lowLabel = stripSvg.append("text").attr("y", 78).attr("text-anchor", "middle").attr("font-size", 10).attr("fill", "var(--muted)");
+  const highLabel = stripSvg.append("text").attr("y", 78).attr("text-anchor", "middle").attr("font-size", 10).attr("fill", "var(--muted)");
+
+  function updateStrip() {
+    const [minV, maxV] = domains[currentMetric];
+    const sx = d3.scaleLinear().domain([minV, maxV]).range([stripMargin.left, stripW - stripMargin.right]);
+    const avg = natlAvg(currentMetric);
+    avgLine2.attr("x1", sx(avg)).attr("x2", sx(avg));
+    avgText2.attr("x", sx(avg));
+
+    const dots = stripSvg.selectAll("circle.strip-dot").data(riskData, d => d.State);
+    dots.join(
+      enter => enter.append("circle").attr("class", "strip-dot").attr("cy", 45).attr("r", 5.5)
+        .attr("stroke", "#fff").attr("stroke-width", 1).style("cursor", "pointer")
+        .on("mousemove", (event, d) => { highlight(d.State); showTooltip(event, d); })
+        .on("mouseleave", () => { unhighlight(); tooltip.style("opacity", 0); }),
+      update => update
+    )
+      .transition().duration(300)
+      .attr("cx", d => sx(val(d)))
+      .attr("fill", d => color(d))
+      .attr("opacity", d => inRegion(d) ? 1 : 0.15);
+
+    const subset = riskData.filter(inRegion);
+    const sorted = [...subset].sort((a,b) => val(b)-val(a));
+    const lo = sorted[sorted.length-1], hi = sorted[0];
+    lowLabel.attr("x", sx(val(lo))).text(lo.State);
+    highLabel.attr("x", sx(val(hi))).text(hi.State);
+    d3.select("#us-strip-title").text(`${currentRegion === "All" ? "All 51 States" : currentRegion + " States"}, at a Glance`);
+  }
+
+  // ---------------- CONTROLS ----------------
+  function setMetric(metric) {
+    currentMetric = metric;
+    d3.select("#view-us").selectAll(".toggle-btn[data-metric]").classed("active", function() { return this.dataset.metric === metric; });
+    redrawAll();
+  }
+  function setRegion(region) {
+    currentRegion = region;
+    d3.select("#view-us").selectAll(".toggle-btn[data-region]").classed("active", function() { return this.dataset.region === region; });
+    redrawAll();
+  }
+
+  function redrawAll() {
+    statePaths.transition().duration(300)
+      .attr("fill", d => {
+        const rec = riskByName.get(d.properties.name);
+        return rec ? color(rec) : "#eee";
+      })
+      .style("opacity", d => {
+        const rec = riskByName.get(d.properties.name);
+        return rec && inRegion(rec) ? 1 : 0.25;
+      });
+    updateLegend();
+    updateLists();
+    updateRegionChart();
+    updateStrip();
+  }
+
+  d3.select("#view-us").selectAll(".toggle-btn[data-metric]").on("click", function() { setMetric(this.dataset.metric); });
+  d3.select("#view-us").selectAll(".toggle-btn[data-region]").on("click", function() { setRegion(this.dataset.region); });
+
+  redrawAll();
+
+}).catch(err => {
+  d3.select("#us-chart").append("p").style("color","red").text("Error loading data: " + err);
+  console.error(err);
+});
+
+})();
+</script>
+
+<script>
+(function(){
+
+const VIEWS = {
+  level:  { label: "2025 Services Share", get: d => d.services_share, fmt: v => v.toFixed(1) + "%", isDiverging: false },
+  change: { label: "Change Since 2010",   get: d => d.services_share_change, fmt: v => (v>=0?"+":"")+v.toFixed(1) + " pts", isDiverging: true }
+};
+let currentView = "level";
+
+Promise.all([
+  d3.json("world-countries-50m.json"),
+  d3.json("world_map_data.json")
+]).then(([world, countryData]) => {
+
+  const dataById = new Map(countryData.map(d => [d.id, d]));
+  const countries = topojson.feature(world, world.objects.countries).features;
+
+  const domains = {
+    level: d3.extent(countryData, d => VIEWS.level.get(d)),
+    change: d3.extent(countryData, d => VIEWS.change.get(d))
+  };
+  const colors = {
+    level: d3.scaleSequential(d3.interpolateYlGnBu).domain(domains.level),
+    change: d3.scaleDiverging(d3.interpolateRdYlGn).domain([domains.change[0], 0, domains.change[1]])
+  };
+
+  function color(d) { return colors[currentView](VIEWS[currentView].get(d)); }
+  function val(d) { return VIEWS[currentView].get(d); }
+
+  function globalAvg(view) {
+    return d3.sum(countryData, d => VIEWS[view].get(d) * d.total_employment_thousands) / d3.sum(countryData, d => d.total_employment_thousands);
+  }
+
+  // ---------------- MAP ----------------
+  const width = 960, height = 520;
+  const svg = d3.select("#world-chart").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("width", "100%")
+    .attr("height", "auto");
+
+  const defs = svg.append("defs");
+  const dropShadow = defs.append("filter").attr("id", "countryShadow").attr("x","-50%").attr("y","-50%").attr("width","200%").attr("height","200%");
+  dropShadow.append("feDropShadow").attr("dx",0).attr("dy",2).attr("stdDeviation",3).attr("flood-color","#000").attr("flood-opacity",0.35);
+
+  const projection = d3.geoNaturalEarth1().fitSize([width - 10, height - 10], {type: "FeatureCollection", features: countries});
+  const path = d3.geoPath(projection);
+
+  const g = svg.append("g").attr("transform", "translate(5,5)");
+  const tooltip = d3.select("#tooltip");
+
+  const countryPaths = g.selectAll("path")
+    .data(countries)
+    .join("path")
+    .attr("class", "state-path")
+    .attr("d", path)
+    .attr("vector-effect", "non-scaling-stroke")
+    .style("opacity", 0)
+    .on("mousemove", (event, d) => {
+      const rec = dataById.get(d.id);
+      if (!rec) { showNoDataTooltip(event, d); return; }
+      highlight(d.id);
+      showTooltip(event, rec);
+    })
+    .on("mouseleave", () => { unhighlight(); tooltip.style("opacity", 0); });
+
+  countryPaths.transition("entrance").delay((d, i) => i * 3).duration(500).style("opacity", 1);
+
+  function highlight(id) {
+    countryPaths
+      .attr("stroke", d => d.id === id ? "#1c1b1a" : "#fff")
+      .attr("stroke-width", d => d.id === id ? 1.4 : 0.5)
+      .attr("filter", d => d.id === id ? "url(#countryShadow)" : null);
+  }
+  function unhighlight() {
+    countryPaths.attr("stroke", "#fff").attr("stroke-width", 0.5).attr("filter", null);
+  }
+
+  function showNoDataTooltip(event, d) {
+    tooltip.style("opacity", 1)
+      .style("left", (event.pageX + 16) + "px")
+      .style("top", (event.pageY - 10) + "px")
+      .html(`<div class="t-title">${d.properties.name}</div><div style="color:#c9c6c0;">No ILOSTAT data available for this country</div>`);
+  }
+
+  function showTooltip(event, rec) {
+    const avg = globalAvg(currentView);
+    const delta = val(rec) - avg;
+    tooltip
+      .style("opacity", 1)
+      .style("left", (event.pageX + 16) + "px")
+      .style("top", (event.pageY - 10) + "px")
+      .html(`
+        <div class="t-title">${rec.name}</div>
+        <div>Services share (2025): <span class="t-risk">${rec.services_share.toFixed(1)}%</span></div>
+        <div>Agriculture: ${rec.agriculture_share.toFixed(1)}% &middot; Industry: ${rec.industry_share.toFixed(1)}%</div>
+        <div style="margin-top:4px;">Change since 2010: <span class="t-risk">${rec.services_share_change >= 0 ? "+" : ""}${rec.services_share_change.toFixed(1)} pts</span></div>
+        <div style="color:${delta>=0?'#9fd8bd':'#ffb199'};">${delta>=0?"+":""}${delta.toFixed(1)} vs. global avg (${VIEWS[currentView].label})</div>
+        <div style="margin-top:4px; color:#c9c6c0;">Total employment: ${d3.format(",")(Math.round(rec.total_employment_thousands))}k workers</div>
+      `);
+  }
+
+  // ---------------- LEGEND ----------------
+  const legendW = 460, legendH = 54;
+  const lgSvg = d3.select("#world-legend-svg").attr("viewBox", `0 0 ${legendW} ${legendH}`).attr("width", "100%").attr("height", legendH);
+  const barY = 22, barH = 12, barX = 10, barW = legendW - 20;
+  const legendGrad = lgSvg.append("defs").append("linearGradient").attr("id", "worldGrad");
+  lgSvg.append("rect").attr("x", barX).attr("y", barY).attr("width", barW).attr("height", barH).attr("rx", 4).attr("fill", "url(#worldGrad)");
+  const legendMinText = lgSvg.append("text").attr("x", barX).attr("y", barY - 8).attr("font-size", 11).attr("fill", "var(--muted)");
+  const legendMaxText = lgSvg.append("text").attr("x", barX + barW).attr("y", barY - 8).attr("text-anchor", "end").attr("font-size", 11).attr("fill", "var(--muted)");
+  const avgLine = lgSvg.append("line").attr("y1", barY - 4).attr("y2", barY + barH + 4).attr("stroke", "#1c1b1a").attr("stroke-width", 2);
+  const avgText = lgSvg.append("text").attr("y", barY + barH + 18).attr("text-anchor", "middle").attr("font-size", 10.5).attr("font-weight", 700).attr("fill", "var(--ink)");
+
+  function updateLegend() {
+    const [minV, maxV] = domains[currentView];
+    legendGrad.selectAll("stop").remove();
+    d3.range(0, 1.01, 0.05).forEach(t => {
+      legendGrad.append("stop").attr("offset", `${t*100}%`).attr("stop-color", colors[currentView](minV + t*(maxV-minV)));
+    });
+    const legendX = d3.scaleLinear().domain([minV, maxV]).range([barX, barX + barW]);
+    legendMinText.text(VIEWS[currentView].fmt(minV));
+    legendMaxText.text(VIEWS[currentView].fmt(maxV));
+    const avg = globalAvg(currentView);
+    const avgX = legendX(avg);
+    avgLine.attr("x1", avgX).attr("x2", avgX);
+    avgText.attr("x", avgX).text(`Avg ${VIEWS[currentView].fmt(avg)}`);
+    d3.select("#world-natl-avg").text(VIEWS[currentView].fmt(avg));
+    d3.select("#world-mini-label-1").text(`Global Average (${VIEWS[currentView].label})`);
+  }
+
+  // ---------------- SIDE LISTS ----------------
+  const barScales = {
+    level: d3.scaleLinear().domain(domains.level).range([6, 100]),
+    change: d3.scaleLinear().domain([0, Math.max(Math.abs(domains.change[0]), Math.abs(domains.change[1]))]).range([6, 100])
+  };
+
+  function renderBarList(sel, arr) {
+    d3.select(sel).selectAll("li")
+      .data(arr, d => d.id)
+      .join("li")
+      .html(d => `
+        <div class="bl-row">
+          <span class="bl-name">${d.name}</span>
+          <span class="bl-val">${VIEWS[currentView].fmt(val(d))}</span>
+        </div>
+        <div class="bl-track"><div class="bl-fill" style="width:${barScales[currentView](Math.abs(val(d)))}%; background:${color(d)};"></div></div>
+      `)
+      .on("mousemove", (event, d) => { highlight(d.id); showTooltip(event, d); })
+      .on("mouseleave", () => { unhighlight(); tooltip.style("opacity", 0); });
+  }
+
+  function updateLists() {
+    const sorted = [...countryData].sort((a,b) => val(b) - val(a));
+    renderBarList("#world-ranklist-high", sorted.slice(0, 5));
+    renderBarList("#world-ranklist-low", sorted.slice(-5).reverse());
+    d3.select("#world-high-list-title").text(`Highest ${VIEWS[currentView].label}`);
+    d3.select("#world-low-list-title").text(`Lowest ${VIEWS[currentView].label}`);
+  }
+
+  // ---------------- CONTROLS ----------------
+  function setView(view) {
+    currentView = view;
+    d3.select("#view-world").selectAll(".toggle-btn[data-view]").classed("active", function() { return this.dataset.view === view; });
+    redrawAll();
+  }
+
+  function redrawAll() {
+    countryPaths.transition().duration(300)
+      .attr("fill", d => {
+        const rec = dataById.get(d.id);
+        return rec ? color(rec) : "#e5e2db";
+      });
+    updateLegend();
+    updateLists();
+  }
+
+  d3.select("#view-world").selectAll(".toggle-btn[data-view]").on("click", function() { setView(this.dataset.view); });
+
+  redrawAll();
+
+}).catch(err => {
+  d3.select("#world-chart").append("p").style("color","red").text("Error loading data: " + err);
+  console.error(err);
+});
+
+})();
+</script>
+
+<script>
+(function(){
+
+const colorMap = { Agriculture: "#c9a63d", Industry: "#7a7d99", Services: "#2f7a63" };
+const sectors = ["Agriculture", "Industry", "Services"];
+
+const METRICS = {
+  share:    { key: "Share_Pct",          label: "% Share of Employment",         fmt: v => v.toFixed(1) + "%" },
+  absolute: { key: "Employment_Millions", label: "Absolute Employment (Millions)", fmt: v => d3.format(",.0f")(v) + "M" }
+};
+let currentMetric = "share";
+let currentSector = "All";
+
+d3.json("line_trends_data.json").then(data => {
+
+  data.forEach(d => { d.Year = +d.Year; });
+  const years = [...new Set(data.map(d => d.Year))].sort((a,b)=>a-b);
+  const byYearSector = new Map();
+  data.forEach(d => byYearSector.set(`${d.Year}|${d.Sector}`, d));
+
+  function val(d) { return d[METRICS[currentMetric].key]; }
+
+  const width = 960, height = 500;
+  const margin = { top: 30, right: 90, bottom: 40, left: 55 };
+
+  const svg = d3.select("#line-chart").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("width", "100%").attr("height", "auto");
+
+  const x = d3.scaleLinear().domain(d3.extent(years)).range([margin.left, width - margin.right]);
+  const yGroup = svg.append("g");
+  const gridGroup = svg.append("g");
+  const axisGroup = svg.append("g");
+  const lineGroup = svg.append("g");
+  const dotGroup = svg.append("g");
+  const labelGroup = svg.append("g");
+  const eventGroup = svg.append("g");
+
+  const tooltip = d3.select("#tooltip");
+  const hoverGuide = svg.append("line").attr("class", "hover-guide").attr("y1", margin.top).attr("y2", height - margin.bottom);
+
+  function render() {
+    const allVals = sectors.flatMap(s => years.map(y => val(byYearSector.get(`${y}|${s}`))));
+    const y = d3.scaleLinear().domain([0, d3.max(allVals) * 1.12]).range([height - margin.bottom, margin.top]);
+
+    gridGroup.selectAll("line").data(y.ticks(6)).join("line")
+      .attr("x1", margin.left).attr("x2", width - margin.right)
+      .attr("y1", d => y(d)).attr("y2", d => y(d))
+      .attr("stroke", "var(--line)").attr("stroke-dasharray", "2,3");
+
+    axisGroup.selectAll("*").remove();
+    axisGroup.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(8))
+      .call(g => g.selectAll("text").attr("fill", "var(--muted)").attr("font-size", 11))
+      .call(g => g.selectAll("path,line").attr("stroke", "var(--line)"));
+    axisGroup.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).tickFormat(d => METRICS[currentMetric].fmt(d)).ticks(6))
+      .call(g => g.selectAll("text").attr("fill", "var(--muted)").attr("font-size", 11))
+      .call(g => g.selectAll("path,line").attr("stroke", "var(--line)"));
+
+    // COVID annotation
+    eventGroup.selectAll("*").remove();
+    eventGroup.append("line")
+      .attr("class", "event-marker")
+      .attr("x1", x(2020)).attr("x2", x(2020))
+      .attr("y1", margin.top).attr("y2", height - margin.bottom)
+      .attr("stroke", "var(--muted)");
+    eventGroup.append("text")
+      .attr("class", "event-label")
+      .attr("x", x(2020)).attr("y", margin.top - 10)
+      .attr("fill", "var(--muted)")
+      .text("2020: pandemic disruption");
+
+    const line = d3.line()
+      .x(d => x(d.Year))
+      .y(d => y(val(d)))
+      .curve(d3.curveMonotoneX);
+
+    sectors.forEach(s => {
+      const points = years.map(yr => byYearSector.get(`${yr}|${s}`));
+      const active = currentSector === "All" || currentSector === s;
+      const op = active ? 1 : 0.12;
+
+      const path = lineGroup.selectAll(`path.line-${s}`).data([points]);
+      path.join("path")
+        .attr("class", `sector-line line-${s}`)
+        .attr("stroke", colorMap[s])
+        .transition().duration(350)
+        .attr("d", line)
+        .style("opacity", op);
+
+      const dots = dotGroup.selectAll(`circle.dot-${s}`).data(points, d => d.Year);
+      dots.join(
+        enter => enter.append("circle")
+          .attr("class", `sector-dot dot-${s}`)
+          .attr("r", 3.5)
+          .attr("fill", colorMap[s])
+          .attr("stroke", "#fff").attr("stroke-width", 1)
+      )
+        .transition().duration(350)
+        .attr("cx", d => x(d.Year))
+        .attr("cy", d => y(val(d)))
+        .style("opacity", op);
+
+      const last = points[points.length - 1];
+      const lbl = labelGroup.selectAll(`text.lbl-${s}`).data([last]);
+      lbl.join("text")
+        .attr("class", `end-label lbl-${s}`)
+        .attr("x", x(last.Year) + 8)
+        .attr("fill", colorMap[s])
+        .attr("font-size", 13)
+        .attr("dy", "0.32em")
+        .transition().duration(350)
+        .attr("y", y(val(last)))
+        .style("opacity", op)
+        .text(`${s} ${METRICS[currentMetric].fmt(val(last))}`);
+    });
+
+    // hover interaction
+    const bisect = d3.bisector(d => d).left;
+    svg.selectAll("rect.overlay").data([null]).join("rect")
+      .attr("class", "overlay")
+      .attr("x", margin.left).attr("y", margin.top)
+      .attr("width", width - margin.left - margin.right)
+      .attr("height", height - margin.top - margin.bottom)
+      .attr("fill", "transparent")
+      .style("cursor", "crosshair")
+      .on("mousemove", function(event) {
+        const [mx] = d3.pointer(event);
+        const yr = Math.round(x.invert(mx));
+        const clamped = Math.max(years[0], Math.min(years[years.length-1], yr));
+        hoverGuide.attr("x1", x(clamped)).attr("x2", x(clamped)).style("opacity", 1);
+        const rows = sectors.filter(s => currentSector === "All" || currentSector === s).map(s => `<div class="row"><span style="color:${colorMap[s]};">&#9632;</span> ${s}<span style="margin-left:auto;">${METRICS[currentMetric].fmt(val(byYearSector.get(`${clamped}|${s}`)))}</span></div>`).join("");
+        tooltip.style("opacity", 1)
+          .style("left", (event.pageX + 16) + "px")
+          .style("top", (event.pageY - 10) + "px")
+          .html(`<div class="t-title">${clamped}</div>${rows}`);
+      })
+      .on("mouseleave", () => { hoverGuide.style("opacity", 0); tooltip.style("opacity", 0); });
+  }
+
+  function renderChangeCards() {
+    const container = d3.select("#line-change-cards");
+    container.selectAll("*").remove();
+    sectors.filter(s => currentSector === "All" || currentSector === s).forEach(s => {
+      const first = byYearSector.get(`2010|${s}`);
+      const last = byYearSector.get(`2025|${s}`);
+      const delta = val(last) - val(first);
+      const card = container.append("div").attr("class", "sector-card").style("border-top", `4px solid ${colorMap[s]}`).style("margin-bottom", "10px");
+      card.append("div").attr("class", "sc-name").style("color", colorMap[s]).text(s);
+      card.append("div").attr("class", "sc-value").text(`${METRICS[currentMetric].fmt(val(first))} \u2192 ${METRICS[currentMetric].fmt(val(last))}`);
+      card.append("div").attr("class", "sc-delta")
+        .style("color", delta > 0 ? "#2f7a63" : delta < 0 ? "#b23a2e" : "var(--muted)")
+        .text(`${delta >= 0 ? "+" : ""}${METRICS[currentMetric].fmt(delta).replace(/^-/, "")} over 15 years`);
+    });
+  }
+
+  function setMetric(metric) {
+    currentMetric = metric;
+    d3.select("#view-line").selectAll(".toggle-btn[data-metric]").classed("active", function() { return this.dataset.metric === metric; });
+    render();
+    renderChangeCards();
+  }
+  function setSector(sector) {
+    currentSector = sector;
+    d3.select("#view-line").selectAll(".toggle-btn[data-sector]").classed("active", function() { return this.dataset.sector === sector; });
+    render();
+    renderChangeCards();
+  }
+  d3.select("#view-line").selectAll(".toggle-btn[data-metric]").on("click", function() { setMetric(this.dataset.metric); });
+  d3.select("#view-line").selectAll(".toggle-btn[data-sector]").on("click", function() { setSector(this.dataset.sector); });
+
+  render();
+  renderChangeCards();
+
+}).catch(err => {
+  d3.select("#line-chart").append("p").style("color","red").text("Error loading data: " + err);
+  console.error(err);
+});
+
+})();
+</script>
+</body>
+</html>

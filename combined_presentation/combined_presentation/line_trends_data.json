@@ -1,0 +1,386 @@
+[
+  {
+    "Year": 2010,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 974531.3640000001,
+    "Year_Total": 2993169.113,
+    "Share_Pct": 32.56,
+    "Employment_Millions": 974.5
+  },
+  {
+    "Year": 2010,
+    "Sector": "Industry",
+    "Employment_Thousands": 684769.858,
+    "Year_Total": 2993169.113,
+    "Share_Pct": 22.88,
+    "Employment_Millions": 684.8
+  },
+  {
+    "Year": 2010,
+    "Sector": "Services",
+    "Employment_Thousands": 1333867.891,
+    "Year_Total": 2993169.113,
+    "Share_Pct": 44.56,
+    "Employment_Millions": 1333.9
+  },
+  {
+    "Year": 2011,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 961144.44,
+    "Year_Total": 3034202.479,
+    "Share_Pct": 31.68,
+    "Employment_Millions": 961.1
+  },
+  {
+    "Year": 2011,
+    "Sector": "Industry",
+    "Employment_Thousands": 703351.431,
+    "Year_Total": 3034202.479,
+    "Share_Pct": 23.18,
+    "Employment_Millions": 703.4
+  },
+  {
+    "Year": 2011,
+    "Sector": "Services",
+    "Employment_Thousands": 1369706.608,
+    "Year_Total": 3034202.479,
+    "Share_Pct": 45.14,
+    "Employment_Millions": 1369.7
+  },
+  {
+    "Year": 2012,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 946376.892,
+    "Year_Total": 3066719.56,
+    "Share_Pct": 30.86,
+    "Employment_Millions": 946.4
+  },
+  {
+    "Year": 2012,
+    "Sector": "Industry",
+    "Employment_Thousands": 722979.5599999999,
+    "Year_Total": 3066719.56,
+    "Share_Pct": 23.58,
+    "Employment_Millions": 723.0
+  },
+  {
+    "Year": 2012,
+    "Sector": "Services",
+    "Employment_Thousands": 1397363.108,
+    "Year_Total": 3066719.56,
+    "Share_Pct": 45.57,
+    "Employment_Millions": 1397.4
+  },
+  {
+    "Year": 2013,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 932942.214,
+    "Year_Total": 3103243.09,
+    "Share_Pct": 30.06,
+    "Employment_Millions": 932.9
+  },
+  {
+    "Year": 2013,
+    "Sector": "Industry",
+    "Employment_Thousands": 729938.928,
+    "Year_Total": 3103243.09,
+    "Share_Pct": 23.52,
+    "Employment_Millions": 729.9
+  },
+  {
+    "Year": 2013,
+    "Sector": "Services",
+    "Employment_Thousands": 1440361.948,
+    "Year_Total": 3103243.09,
+    "Share_Pct": 46.41,
+    "Employment_Millions": 1440.4
+  },
+  {
+    "Year": 2014,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 916664.8620000001,
+    "Year_Total": 3140529.584,
+    "Share_Pct": 29.19,
+    "Employment_Millions": 916.7
+  },
+  {
+    "Year": 2014,
+    "Sector": "Industry",
+    "Employment_Thousands": 738750.0869999999,
+    "Year_Total": 3140529.584,
+    "Share_Pct": 23.52,
+    "Employment_Millions": 738.8
+  },
+  {
+    "Year": 2014,
+    "Sector": "Services",
+    "Employment_Thousands": 1485114.635,
+    "Year_Total": 3140529.584,
+    "Share_Pct": 47.29,
+    "Employment_Millions": 1485.1
+  },
+  {
+    "Year": 2015,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 905396.8960000001,
+    "Year_Total": 3175938.974,
+    "Share_Pct": 28.51,
+    "Employment_Millions": 905.4
+  },
+  {
+    "Year": 2015,
+    "Sector": "Industry",
+    "Employment_Thousands": 741682.899,
+    "Year_Total": 3175938.974,
+    "Share_Pct": 23.35,
+    "Employment_Millions": 741.7
+  },
+  {
+    "Year": 2015,
+    "Sector": "Services",
+    "Employment_Thousands": 1528859.179,
+    "Year_Total": 3175938.974,
+    "Share_Pct": 48.14,
+    "Employment_Millions": 1528.9
+  },
+  {
+    "Year": 2016,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 898810.885,
+    "Year_Total": 3212239.892,
+    "Share_Pct": 27.98,
+    "Employment_Millions": 898.8
+  },
+  {
+    "Year": 2016,
+    "Sector": "Industry",
+    "Employment_Thousands": 750369.244,
+    "Year_Total": 3212239.892,
+    "Share_Pct": 23.36,
+    "Employment_Millions": 750.4
+  },
+  {
+    "Year": 2016,
+    "Sector": "Services",
+    "Employment_Thousands": 1563059.763,
+    "Year_Total": 3212239.892,
+    "Share_Pct": 48.66,
+    "Employment_Millions": 1563.1
+  },
+  {
+    "Year": 2017,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 890318.093,
+    "Year_Total": 3247698.157,
+    "Share_Pct": 27.41,
+    "Employment_Millions": 890.3
+  },
+  {
+    "Year": 2017,
+    "Sector": "Industry",
+    "Employment_Thousands": 761507.355,
+    "Year_Total": 3247698.157,
+    "Share_Pct": 23.45,
+    "Employment_Millions": 761.5
+  },
+  {
+    "Year": 2017,
+    "Sector": "Services",
+    "Employment_Thousands": 1595872.709,
+    "Year_Total": 3247698.157,
+    "Share_Pct": 49.14,
+    "Employment_Millions": 1595.9
+  },
+  {
+    "Year": 2018,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 880106.723,
+    "Year_Total": 3287838.209,
+    "Share_Pct": 26.77,
+    "Employment_Millions": 880.1
+  },
+  {
+    "Year": 2018,
+    "Sector": "Industry",
+    "Employment_Thousands": 774134.883,
+    "Year_Total": 3287838.209,
+    "Share_Pct": 23.55,
+    "Employment_Millions": 774.1
+  },
+  {
+    "Year": 2018,
+    "Sector": "Services",
+    "Employment_Thousands": 1633596.603,
+    "Year_Total": 3287838.209,
+    "Share_Pct": 49.69,
+    "Employment_Millions": 1633.6
+  },
+  {
+    "Year": 2019,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 873411.589,
+    "Year_Total": 3329091.676,
+    "Share_Pct": 26.24,
+    "Employment_Millions": 873.4
+  },
+  {
+    "Year": 2019,
+    "Sector": "Industry",
+    "Employment_Thousands": 784421.849,
+    "Year_Total": 3329091.676,
+    "Share_Pct": 23.56,
+    "Employment_Millions": 784.4
+  },
+  {
+    "Year": 2019,
+    "Sector": "Services",
+    "Employment_Thousands": 1671258.238,
+    "Year_Total": 3329091.676,
+    "Share_Pct": 50.2,
+    "Employment_Millions": 1671.3
+  },
+  {
+    "Year": 2020,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 884617.085,
+    "Year_Total": 3259172.344,
+    "Share_Pct": 27.14,
+    "Employment_Millions": 884.6
+  },
+  {
+    "Year": 2020,
+    "Sector": "Industry",
+    "Employment_Thousands": 759818.567,
+    "Year_Total": 3259172.344,
+    "Share_Pct": 23.31,
+    "Employment_Millions": 759.8
+  },
+  {
+    "Year": 2020,
+    "Sector": "Services",
+    "Employment_Thousands": 1614736.692,
+    "Year_Total": 3259172.344,
+    "Share_Pct": 49.54,
+    "Employment_Millions": 1614.7
+  },
+  {
+    "Year": 2021,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 900021.579,
+    "Year_Total": 3357538.069,
+    "Share_Pct": 26.81,
+    "Employment_Millions": 900.0
+  },
+  {
+    "Year": 2021,
+    "Sector": "Industry",
+    "Employment_Thousands": 791545.101,
+    "Year_Total": 3357538.069,
+    "Share_Pct": 23.58,
+    "Employment_Millions": 791.5
+  },
+  {
+    "Year": 2021,
+    "Sector": "Services",
+    "Employment_Thousands": 1665971.389,
+    "Year_Total": 3357538.069,
+    "Share_Pct": 49.62,
+    "Employment_Millions": 1666.0
+  },
+  {
+    "Year": 2022,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 920236.938,
+    "Year_Total": 3426518.787,
+    "Share_Pct": 26.86,
+    "Employment_Millions": 920.2
+  },
+  {
+    "Year": 2022,
+    "Sector": "Industry",
+    "Employment_Thousands": 808274.338,
+    "Year_Total": 3426518.787,
+    "Share_Pct": 23.59,
+    "Employment_Millions": 808.3
+  },
+  {
+    "Year": 2022,
+    "Sector": "Services",
+    "Employment_Thousands": 1698007.511,
+    "Year_Total": 3426518.787,
+    "Share_Pct": 49.55,
+    "Employment_Millions": 1698.0
+  },
+  {
+    "Year": 2023,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 926338.223,
+    "Year_Total": 3493344.92,
+    "Share_Pct": 26.52,
+    "Employment_Millions": 926.3
+  },
+  {
+    "Year": 2023,
+    "Sector": "Industry",
+    "Employment_Thousands": 821975.676,
+    "Year_Total": 3493344.92,
+    "Share_Pct": 23.53,
+    "Employment_Millions": 822.0
+  },
+  {
+    "Year": 2023,
+    "Sector": "Services",
+    "Employment_Thousands": 1745031.021,
+    "Year_Total": 3493344.92,
+    "Share_Pct": 49.95,
+    "Employment_Millions": 1745.0
+  },
+  {
+    "Year": 2024,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 919569.629,
+    "Year_Total": 3529242.903,
+    "Share_Pct": 26.06,
+    "Employment_Millions": 919.6
+  },
+  {
+    "Year": 2024,
+    "Sector": "Industry",
+    "Employment_Thousands": 833549.235,
+    "Year_Total": 3529242.903,
+    "Share_Pct": 23.62,
+    "Employment_Millions": 833.5
+  },
+  {
+    "Year": 2024,
+    "Sector": "Services",
+    "Employment_Thousands": 1776124.039,
+    "Year_Total": 3529242.903,
+    "Share_Pct": 50.33,
+    "Employment_Millions": 1776.1
+  },
+  {
+    "Year": 2025,
+    "Sector": "Agriculture",
+    "Employment_Thousands": 918324.967,
+    "Year_Total": 3564943.8370000003,
+    "Share_Pct": 25.76,
+    "Employment_Millions": 918.3
+  },
+  {
+    "Year": 2025,
+    "Sector": "Industry",
+    "Employment_Thousands": 844040.274,
+    "Year_Total": 3564943.8370000003,
+    "Share_Pct": 23.68,
+    "Employment_Millions": 844.0
+  },
+  {
+    "Year": 2025,
+    "Sector": "Services",
+    "Employment_Thousands": 1802578.5960000001,
+    "Year_Total": 3564943.8370000003,
+    "Share_Pct": 50.56,
+    "Employment_Millions": 1802.6
+  }
+]
